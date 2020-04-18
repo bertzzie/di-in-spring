@@ -9,7 +9,7 @@ public class SpeakServiceImpl implements SpeakService {
 
     private MessageService messageService;
 
-    public void setMessageService(MessageService messageService) {
+    public SpeakServiceImpl(MessageService messageService) {
         this.messageService = messageService;
     }
 

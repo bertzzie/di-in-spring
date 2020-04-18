@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tech.namas.demo.ioc.services.MessageService;
 import tech.namas.demo.ioc.services.SpeakService;
+import tech.namas.demo.ioc.services.impl.MessageServiceIdn;
 import tech.namas.demo.ioc.services.impl.MessageServiceImpl;
 import tech.namas.demo.ioc.services.impl.SpeakServiceImpl;
 
@@ -16,10 +17,17 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public SpeakService speakService(MessageService messageService) {
-        SpeakServiceImpl service = new SpeakServiceImpl();
-        service.setMessageService(messageService);
+    public MessageService messageServiceIdn() {
+        return new MessageServiceIdn();
+    }
 
-        return service;
+    @Bean
+    public SpeakService speakService(MessageService messageService) {
+        return new SpeakServiceImpl(messageService);
+    }
+
+    @Bean
+    public SpeakService speakServiceIdn(MessageService messageServiceIdn) {
+        return new SpeakServiceImpl(messageServiceIdn);
     }
 }

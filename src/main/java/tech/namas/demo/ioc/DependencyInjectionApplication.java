@@ -13,8 +13,17 @@ public class DependencyInjectionApplication {
             new AnnotationConfigApplicationContext(ServiceConfiguration.class);
         BeanFactory beanFactory = context.getAutowireCapableBeanFactory();
 
-        SpeakService speakService = beanFactory.getBean(SpeakService.class);
+        SpeakService speakService = beanFactory.getBean("speakService", SpeakService.class);
         speakService.sayHello("world");
+
+        SpeakService speakServiceIdn = beanFactory.getBean("speakServiceIdn", SpeakService.class);
+        speakServiceIdn.sayHello("dunia");
+
+        // Next challenge for you:
+        // - Ask yourself how do we get "speakService" and "speakServiceIdn" automatically?
+        //   How do spring do it?
+        // - What if we want to use different name?
+        // - Learn about @Qualifier and Bean name
     }
 
 }
