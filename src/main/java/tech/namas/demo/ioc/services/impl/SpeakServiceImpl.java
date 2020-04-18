@@ -1,6 +1,5 @@
 package tech.namas.demo.ioc.services.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tech.namas.demo.ioc.services.MessageService;
 import tech.namas.demo.ioc.services.SpeakService;
@@ -10,8 +9,7 @@ public class SpeakServiceImpl implements SpeakService {
 
     private MessageService messageService;
 
-    @Autowired
-    public SpeakServiceImpl(MessageService messageService) {
+    public void setMessageService(MessageService messageService) {
         this.messageService = messageService;
     }
 

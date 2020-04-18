@@ -17,6 +17,9 @@ public class ServiceConfiguration {
 
     @Bean
     public SpeakService speakService(MessageService messageService) {
-        return new SpeakServiceImpl(messageService);
+        SpeakServiceImpl service = new SpeakServiceImpl();
+        service.setMessageService(messageService);
+
+        return service;
     }
 }
