@@ -8,8 +8,12 @@ import tech.namas.demo.ioc.services.SpeakService;
 @Service
 public class SpeakServiceImpl implements SpeakService {
 
-    @Autowired
     private MessageService messageService;
+
+    @Autowired
+    public SpeakServiceImpl(MessageService messageService) {
+        this.messageService = messageService;
+    }
 
     @Override
     public void sayHello(String message) {
