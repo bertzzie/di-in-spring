@@ -1,14 +1,17 @@
 package tech.namas.demo.ioc;
 
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import tech.namas.demo.ioc.configs.ServiceConfiguration;
 import tech.namas.demo.ioc.services.SpeakService;
-import tech.namas.demo.ioc.services.impl.SpeakServiceImpl;
 
 public class DependencyInjectionApplication {
 
     public static void main(String[] args) {
-        SpeakService service = new SpeakServiceImpl();
+        BeanFactory beanFactory = new AnnotationConfigApplicationContext(ServiceConfiguration.class);
+        SpeakService speakService = beanFactory.getBean(SpeakService.class);
 
-        service.sayHello("world");
+        speakService.sayHello("world");
     }
 
 }
